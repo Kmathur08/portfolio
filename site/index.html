@@ -1373,7 +1373,7 @@ const hexRgb = h => { const n = parseInt(h.slice(1), 16); return [(n >> 16 & 255
 /* ================= Data ================= */
 const CONTENT = (() => { try { return JSON.parse($('#site-content').textContent); } catch { return {}; } })();
 const escH = v => String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-const safeUrl = u => (/^(https?:\/\/|mailto:|\/(?!\/)|#)/i.test(u || '') || /^[\w./-]+\.pdf$/i.test(u || '')) ? escH(u) : '';
+const safeUrl = u => (/^(https?:\/\/|mailto:|\/(?![\/\\])|#)/i.test(u || '') || /^[\w./-]+\.pdf$/i.test(u || '')) ? escH(u) : '';
 const safeColor = (c, d = '#ff7a4e') => /^#[0-9a-f]{3,8}$/i.test(c || '') ? c : d;
 const PROFILE = CONTENT.profile || {}, RESUME = CONTENT.resume || {};
 const SERVICE_ICONS = {"pen": "<path d=\"M4 20 L8 19 L19 8 L16 5 L5 16 Z\"/><path d=\"M14 7 l3 3\"/>", "globe": "<circle cx=\"12\" cy=\"12\" r=\"8\"/><ellipse cx=\"12\" cy=\"12\" rx=\"8\" ry=\"3.2\"/><path d=\"M12 4 v16\"/>", "bot": "<rect x=\"5\" y=\"7\" width=\"14\" height=\"11\" rx=\"3\"/><path d=\"M12 3 v4 M9 12 h.01 M15 12 h.01 M9.5 15 h5\"/>", "grid": "<rect x=\"4\" y=\"4\" width=\"7\" height=\"7\" rx=\"2\"/><rect x=\"13\" y=\"4\" width=\"7\" height=\"7\" rx=\"2\"/><rect x=\"4\" y=\"13\" width=\"7\" height=\"7\" rx=\"2\"/><circle cx=\"16.5\" cy=\"16.5\" r=\"3.5\"/>"};
