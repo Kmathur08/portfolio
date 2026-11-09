@@ -49,8 +49,27 @@ Settings for the host:
 | `SESSION_SECRET` | any long random string |
 | `ADMIN_PASSWORD` | optional. Use it instead of running `set-password` on the host |
 | `PORT` | usually set by the host |
+| `SITE_URL` | your public address, for example `https://kshitij.dev/`. Used for the canonical link, share image and sitemap |
 
 Build command: `npm install`. Start command: `npm start`. Root directory: `server` (the server serves `../site`).
+
+## Search and AI discoverability
+
+Everything below is built from the same content you edit in the dashboard (`lib/seo.js`), so it updates when you save:
+
+- **Search engines (SEO):** title, description, canonical link, Open Graph and Twitter cards with `og.png` for link previews, `/robots.txt` and `/sitemap.xml`.
+- **Answer engines (AEO):** schema.org JSON-LD for you (`Person`), the site, your projects, and an FAQ written from your real details.
+- **AI assistants (LLMO / GEO):** `/llms.txt`, a plain summary of your work for language models, and a plain-HTML copy of the portfolio inside `<noscript>`, for crawlers that don't run JavaScript. `robots.txt` explicitly welcomes GPTBot, ClaudeBot, PerplexityBot and others.
+
+## Free hosting: static site + admin on your computer
+
+Host only the `site/` folder for free (Vercel: import the repo, Root Directory `site`, no build command). Keep the admin on your own computer and publish edits like this:
+
+1. `npm start`, then edit at http://localhost:3000/admin
+2. `npm run export -- https://your-name.vercel.app/` (the address is remembered, so next time just `npm run export`)
+3. `git add site && git commit -m "Update portfolio content" && git push`. The host redeploys by itself.
+
+Export bakes your content into `site/index.html`, refreshes the SEO files and copies an uploaded resume to `site/Kshitij_Mathur_Resume.pdf`. That file becomes public, so upload a version without your phone number.
 
 ## Security notes
 

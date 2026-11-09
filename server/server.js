@@ -7,6 +7,7 @@ import { fileURLToPath } from 'node:url';
 import * as store from './lib/store.js';
 import * as auth from './lib/auth.js';
 import { cleanContent, PREVIEWS, ICONS } from './lib/validate.js';
+import { buildSeo, injectSeo } from './lib/seo.js';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const SITE_DIR = path.resolve(process.env.SITE_DIR || path.join(here, '..', 'site'));
@@ -28,15 +29,29 @@ const esc = s => String(s || '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '
 async function renderIndex(req, res, next) {
   try {
     const [html, content] = await Promise.all([fs.readFile(path.join(SITE_DIR, 'index.html'), 'utf8'), store.readContent()]);
-    const p = content.profile || {};
     const blob = JSON.stringify(content).replace(/</g, '\\u003c');
     let out = html.replace(/(<script id="site-content" type="application\/json">)[\s\S]*?(<\/script>)/, (_, a, b) => a + blob + b);
-    if (p.name) out = out.replace(/<title>[^<]*<\/title>/, `<title>${esc(p.name)} · Product engineer</title>`);
-    if (p.lead) out = out.replace(/(<meta name="description" content=")[^"]*(")/, (_, a, b) => a + esc(p.lead.slice(0, 160)) + b);
+    const seo = buildSeo(content, siteUrl(req));
+    out = injectSeo(out, seo).replace(/<title>[^<]*<\/title>/, () => `<title>${esc(seo.title)}</title>`);
+    out = out.replace(/(<meta name="description" content=")[^"]*(")/, (_, a, b) => a + esc(seo.description) + b);
     res.set('Cache-Control', 'no-cache').type('html').send(out);
   } catch (e) { next(e); }
 }
 app.get(['/', '/index.html'], renderIndex);
+
+// ---------- SEO / AI discoverability files, always in sync with the current content ----------
+// SITE_URL (e.g. https://kshitij.dev/) is the public address; without it the request's own host is used.
+const siteUrl = req => process.env.SITE_URL || `${req.protocol}://${req.get('host')}/`;
+const seoFile = (key, type) => async (req, res, next) => {
+  try {
+    const text = buildSeo(await store.readContent(), siteUrl(req))[key];
+    if (!text) return res.status(404).end();
+    res.set('Cache-Control', 'public, max-age=3600').type(type).send(text);
+  } catch (e) { next(e); }
+};
+app.get('/llms.txt', seoFile('llms', 'text/plain; charset=utf-8'));
+app.get('/robots.txt', seoFile('robots', 'text/plain; charset=utf-8'));
+app.get('/sitemap.xml', seoFile('sitemap', 'application/xml'));
 app.get('/api/content', async (req, res, next) => { try { res.set('Cache-Control', 'no-cache').json(await store.readContent()); } catch (e) { next(e); } });
 app.use('/uploads', express.static(store.UPLOAD_DIR, { maxAge: '1h', fallthrough: false }));
 

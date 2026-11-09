@@ -1,0 +1,69 @@
+# Kshitij Mathur
+
+> I'm Kshitij Mathur, a product designer and engineer from India, studying Computer Science at SKIT Jaipur. I build real-time web apps, ML-backed tools and products people can use the same day.
+
+Kshitij Mathur is based in Jaipur, India. Education: B.Tech CSE · SKIT Jaipur · CGPA 9.0. Status: Open to projects & collaborations.
+
+## Projects
+
+- [Meetly](https://meetly-beta.vercel.app): Video meetings with games. A browser-based video meeting app for small groups: calls for up to six people, screen sharing, chat and five multiplayer games, with nothing to install. Stack: React 19, Vite, WebRTC, Socket.io, Node.js, Express 5, MongoDB, Vercel, Render. Code: https://github.com/Kmathur08/Meetly
+- [Thandak](https://thandak-india-api.vercel.app): Heat safety for India. A free heat-safety service in Hindi and English that tells a family how risky today's heat is and what to do, on the web, Android, iOS and WhatsApp. Stack: Python, XGBoost, JavaScript, Java, Swift, Docker, WhatsApp bot, Vercel. Code: https://github.com/VanshikaSingh277/garmi-check-india
+- **PaperSetu**: Exam papers for teachers. An offline Android app for school teachers, in Hindi and English, that builds exam question papers in minutes and exports print-ready PDFs. Stack: Kotlin, Android WebView, JavaScript, Firebase, Firestore, Cloudflare Workers, Gemini API, Brevo.
+- [PrepWise](https://github.com/Kmathur08/PrepWise): AI mock interview platform. Upload your resume and an AI voice agent interviews you for the role, then scores every answer and shows where you are weak. Stack: Next.js, React, TypeScript, Vapi AI, Google Gemini, Firebase Auth, Firestore, Mammoth. Code: https://github.com/Kmathur08/PrepWise
+- [RDIS LMS](https://rdis-lms.vercel.app/): Gamified learning platform. A learning management system for courses, lessons and quizzes, with XP, badges, streaks and leaderboards to keep students coming back. Stack: TypeScript, Node.js, Express, PostgreSQL, JWT, Vercel. Code: https://github.com/krishnaw17/SKIT-CSE-2023-2027-48
+
+## Experience
+
+- B.Tech CSE, SKIT (Sep 2023): Computer Science at SKIT Jaipur, CGPA 9.0. Coordinator of the Science & Technology Club.
+- Web Dev Intern (Jul – Aug 2024): Kistechno Software, Jaipur. Built and shipped a responsive site with lazy loading and minified assets.
+- Front-end Intern (Jun – Jul 2025): PRNIT India LLP, Jaipur. 10+ reusable React and Tailwind components, two client features shipped on time.
+- Gen AI Intern (May – Jul 2026): MNIT Jaipur. Hybrid candidate-ranking pipeline with reranking and honeypot detection for the RedRob AI Hackathon.
+- Shipping & practising (Now): Meetly, PaperSetu and Thandak this autumn, problems most days, open to internships.
+
+## Skills
+
+C++, Java, React, Next.js, TypeScript, JavaScript, Node.js, Express, Socket.io, WebRTC, MongoDB, PostgreSQL, Prisma, Python, scikit-learn, XGBoost, Tailwind, Firebase, Docker, Gemini API, Vapi, Git, Postman, Figma, Vercel
+
+## Services
+
+- Full-stack web apps: From a rough idea to a deployed app: data model, API, auth and a polished interface, shipped to Vercel or Render with a link you can share the same week.
+- Real-time & collaborative: Video calls, live chat, multiplayer games and shared boards. I built Meetly end to end, so I know where peer-to-peer connections break and how to keep game state honest.
+- Data & ML features: Practical machine learning inside real products: ranking, record matching and estimates that show their uncertainty, backed by Python services and clear data pipelines.
+- Product design & UI: Flows, interfaces and motion designed by the person who will build them, so what you approve in the design is what ships.
+
+## Side projects
+
+- [Candidate ranking](https://github.com/devanshuk3/Redrob-Codebase) (2026): RedRob AI Hackathon · MNIT internship, team of 4
+- [Entity resolution](https://github.com/JaideepSinghChouhan/AmazonMLchallenge) (2026): Amazon ML Challenge · business record matching
+- [LearningML](https://github.com/Kmathur08/LearningML) (2026): Logistic regression, KNN and grid search notebooks
+- [S&T Club site](https://snt-club.vercel.app) (2026): Club coordinator · 4+ workshops, 150+ students
+- [NOVA](https://sankar-group-seven.vercel.app) (2026): Team productivity app · Sankar Group internship
+- [ConstiTUT](https://github.com/Kmathur08/ConstiTut) (2024): Constitution learning platform · led the backend
+
+## FAQ
+
+### Who is Kshitij Mathur?
+I'm Kshitij Mathur, a product designer and engineer from India, studying Computer Science at SKIT Jaipur. I build real-time web apps, ML-backed tools and products people can use the same day. Education: B.Tech CSE · SKIT Jaipur · CGPA 9.0.
+
+### What projects has Kshitij built?
+Meetly: A browser-based video meeting app for small groups: calls for up to six people, screen sharing, chat and five multiplayer games, with nothing to install. Thandak: A free heat-safety service in Hindi and English that tells a family how risky today's heat is and what to do, on the web, Android, iOS and WhatsApp. PaperSetu: An offline Android app for school teachers, in Hindi and English, that builds exam question papers in minutes and exports print-ready PDFs. PrepWise: Upload your resume and an AI voice agent interviews you for the role, then scores every answer and shows where you are weak. RDIS LMS: A learning management system for courses, lessons and quizzes, with XP, badges, streaks and leaderboards to keep students coming back.
+
+### What technologies does Kshitij work with?
+C++, Java, React, Next.js, TypeScript, JavaScript, Node.js, Express, Socket.io, WebRTC, MongoDB, PostgreSQL, Prisma, Python, scikit-learn, XGBoost, Tailwind, Firebase, Docker, Gemini API, Vapi, Git, Postman, Figma and Vercel.
+
+### Where has Kshitij interned?
+Web Dev Intern (Jul – Aug 2024): Kistechno Software, Jaipur. Built and shipped a responsive site with lazy loading and minified assets. Front-end Intern (Jun – Jul 2025): PRNIT India LLP, Jaipur. 10+ reusable React and Tailwind components, two client features shipped on time. Gen AI Intern (May – Jul 2026): MNIT Jaipur. Hybrid candidate-ranking pipeline with reranking and honeypot detection for the RedRob AI Hackathon.
+
+### Is Kshitij available for work?
+Open to projects & collaborations. Usual reply time: within 24 hours.
+
+### How can I contact Kshitij Mathur?
+Email mathur.kshitij08@gmail.com, or message on LinkedIn (https://www.linkedin.com/in/kshitijmathur08/). Code is on GitHub at https://github.com/Kmathur08.
+
+## Links
+
+- Email: mathur.kshitij08@gmail.com
+- https://github.com/Kmathur08
+- https://www.linkedin.com/in/kshitijmathur08/
+- https://leetcode.com/u/kmathur08/
+- https://codolio.com/profile/KshitijMathur
