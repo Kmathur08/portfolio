@@ -66,8 +66,7 @@ Everything below is built from the same content you edit in the dashboard (`lib/
 Host only the `site/` folder for free (Vercel: import the repo, Root Directory `site`, no build command). Keep the admin on your own computer and publish edits like this:
 
 1. `npm start`, then edit at http://localhost:3000/admin
-2. `npm run export -- https://your-name.vercel.app/` (the address is remembered, so next time just `npm run export`)
-3. `git add site && git commit -m "Update portfolio content" && git push`. The host redeploys by itself.
+2. `npm run deploy` exports your edits, commits the `site` folder and pushes. (`npm run export` alone only updates the files.)
 
 Export bakes your content into `site/index.html`, refreshes the SEO files and copies an uploaded resume to `site/Kshitij_Mathur_Resume.pdf`. That file becomes public, so upload a version without your phone number.
 

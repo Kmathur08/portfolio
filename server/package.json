@@ -10,7 +10,8 @@
     "dev": "node --watch server.js",
     "set-password": "node scripts/set-password.js",
     "build-seo": "node scripts/build-seo.js",
-    "export": "node scripts/export.js"
+    "export": "node scripts/export.js",
+    "deploy": "node scripts/deploy.js"
   },
   "engines": {
     "node": ">=20"

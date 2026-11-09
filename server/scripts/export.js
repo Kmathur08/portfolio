@@ -27,4 +27,4 @@ if (up.startsWith('/uploads/')) {
 await writeSite(site, content, url);
 console.log(`Exported ${content.projects?.length || 0} projects, ${content.experience?.length || 0} timeline entries and ${content.tools?.length || 0} tools to site/.`);
 console.log(url ? `Site address: ${url}` : 'Tip: add your site address once for the canonical link, share image and sitemap: npm run export -- https://your-name.vercel.app/');
-console.log('Next: git add site && git commit -m "Update portfolio content" && git push');
+console.log('Next: run  npm run deploy  to put it live (or commit and push the site folder yourself).');
