@@ -1,0 +1,599 @@
+{
+  "profile": {
+    "name": "Kshitij Mathur",
+    "firstName": "Kshitij",
+    "availability": "Open to projects & collaborations",
+    "lead": "I'm Kshitij Mathur, a product designer and engineer from India, studying Computer Science at SKIT Jaipur. I build real-time web apps, ML-backed tools and products people can use the same day.",
+    "education": "B.Tech CSE · SKIT Jaipur · CGPA 9.0",
+    "location": "Jaipur, India",
+    "email": "mathur.kshitij08@gmail.com",
+    "usualReply": "Within 24 hours",
+    "links": {
+      "github": "https://github.com/Kmathur08",
+      "linkedin": "https://www.linkedin.com/in/kshitijmathur08/",
+      "leetcode": "https://leetcode.com/u/kmathur08/",
+      "codolio": "https://codolio.com/profile/KshitijMathur"
+    },
+    "contactLinks": [
+      {
+        "label": "LinkedIn",
+        "url": "https://www.linkedin.com/in/kshitijmathur08/"
+      },
+      {
+        "label": "GitHub",
+        "url": "https://github.com/Kmathur08"
+      },
+      {
+        "label": "LeetCode",
+        "url": "https://leetcode.com/u/kmathur08/"
+      },
+      {
+        "label": "Meetly",
+        "url": "https://meetly-beta.vercel.app"
+      },
+      {
+        "label": "Thandak",
+        "url": "https://thandak-india-api.vercel.app"
+      }
+    ]
+  },
+  "resume": {
+    "url": "Kshitij_Mathur_Resume.pdf",
+    "updated": "Nov 2026",
+    "size": "132 KB",
+    "pages": 1
+  },
+  "projects": [
+    {
+      "slug": "meetly",
+      "name": "Meetly",
+      "kicker": "Video meetings with games",
+      "year": "2026",
+      "role": "Solo · design & full-stack",
+      "platform": "Web",
+      "team": "Solo",
+      "accent": "#7fd1ff",
+      "preview": "meet",
+      "summary": "A browser-based video meeting app for small groups: calls for up to six people, screen sharing, chat and five multiplayer games, with nothing to install.",
+      "metric": {
+        "value": "6",
+        "label": "people per room"
+      },
+      "chips": [
+        "WebRTC",
+        "Socket.io",
+        "React 19"
+      ],
+      "story": {
+        "challenge": "Small groups end up juggling a call app, a chat and a separate game site, and most video tools ask people to install something first.",
+        "approach": "I built Meetly on my own. Calls run peer to peer over WebRTC, with screen sharing, mute and camera indicators, and room chat that keeps history for late joiners. Bingo, Zero & Cross, a vanishing variant, Dots & Houses and Word Search run inside the meeting, and the server enforces the rules so cards stay private and moves can't be faked.",
+        "outcome": "Live on Vercel with the backend on Render. It has accounts and meeting history, expiring sessions, password reset by email, invite links by URL or room code, and a pre-rendered landing page with structured data for search."
+      },
+      "stats": [
+        {
+          "value": "6",
+          "label": "people per room, peer to peer"
+        },
+        {
+          "value": "5",
+          "label": "games you can play in a meeting"
+        },
+        {
+          "value": "118",
+          "label": "of the 121 commits are mine"
+        }
+      ],
+      "stack": [
+        "React 19",
+        "Vite",
+        "WebRTC",
+        "Socket.io",
+        "Node.js",
+        "Express 5",
+        "MongoDB",
+        "Vercel",
+        "Render"
+      ],
+      "live": "https://meetly-beta.vercel.app",
+      "repo": "https://github.com/Kmathur08/Meetly"
+    },
+    {
+      "slug": "thandak",
+      "name": "Thandak",
+      "kicker": "Heat safety for India",
+      "year": "2026",
+      "role": "Backend, maps & mobile builds",
+      "platform": "Web · Android · iOS · WhatsApp",
+      "team": "3 people",
+      "accent": "#ff7a4e",
+      "preview": "thandak",
+      "summary": "A free heat-safety service in Hindi and English that tells a family how risky today's heat is and what to do, on the web, Android, iOS and WhatsApp.",
+      "metric": {
+        "value": "733",
+        "label": "districts covered"
+      },
+      "chips": [
+        "Python",
+        "Maps",
+        "Android"
+      ],
+      "story": {
+        "challenge": "Heatwave warnings in India are generic. A family needs to know what today's heat means for each person at home, in their language, without installing anything.",
+        "approach": "On a team of three, I built the backend in phases: alerts, per-person advice, saved homes, an assisted mode for ASHA and NGO workers, and calibration. I also added city heat-hotspot maps, a Delhi ward cooling scenario with a rupee budget planner, GeoJSON and printable ward exports, an outdoor-work card with hourly heat levels, and the signed Android release build.",
+        "outcome": "Heat levels come only from the forecast and IMD's rules, every number in the advice is evidence-backed, and room temperature is estimated by an XGBoost model and always shown as a range."
+      },
+      "stats": [
+        {
+          "value": "733",
+          "label": "districts ranked for heat risk"
+        },
+        {
+          "value": "2",
+          "label": "languages: Hindi and English"
+        },
+        {
+          "value": "28",
+          "label": "of the 43 commits are mine"
+        }
+      ],
+      "stack": [
+        "Python",
+        "XGBoost",
+        "JavaScript",
+        "Java",
+        "Swift",
+        "Docker",
+        "WhatsApp bot",
+        "Vercel"
+      ],
+      "live": "https://thandak-india-api.vercel.app",
+      "repo": "https://github.com/VanshikaSingh277/garmi-check-india"
+    },
+    {
+      "slug": "papersetu",
+      "name": "PaperSetu",
+      "kicker": "Exam papers for teachers",
+      "year": "2026",
+      "role": "Solo · design & full-stack",
+      "platform": "Android · Web",
+      "team": "Solo",
+      "accent": "#ffd27a",
+      "preview": "paper",
+      "summary": "An offline Android app for school teachers, in Hindi and English, that builds exam question papers in minutes and exports print-ready PDFs.",
+      "metric": {
+        "value": "3",
+        "label": "sets + answer key"
+      },
+      "chips": [
+        "Android",
+        "Kotlin",
+        "Gemini"
+      ],
+      "story": {
+        "challenge": "Teachers spend hours typing question papers by hand, fitting them to the school's format, and making separate sets so students can't copy from each other.",
+        "approach": "I built PaperSetu on my own. A teacher picks the board, class, chapters and marks, chooses questions from the built-in bank, previews and edits the paper, then exports a PDF with up to three sets and an answer key, prints it or shares it on WhatsApp. The interface is HTML, CSS and JavaScript inside a Kotlin WebView, with native PDF and Word export.",
+        "outcome": "Number templates give every set fresh values and work out the answer key automatically. Gemini drafts or rewords questions, approved ones join a shared bank, and school groups can see which questions colleagues have already used. Accounts sync through Firebase, and a Cloudflare Worker handles email and AI."
+      },
+      "stats": [
+        {
+          "value": "3",
+          "label": "sets per paper, plus an answer key"
+        },
+        {
+          "value": "2",
+          "label": "languages: Hindi and English"
+        },
+        {
+          "value": "28",
+          "label": "commits, built solo"
+        }
+      ],
+      "stack": [
+        "Kotlin",
+        "Android WebView",
+        "JavaScript",
+        "Firebase",
+        "Firestore",
+        "Cloudflare Workers",
+        "Gemini API",
+        "Brevo"
+      ],
+      "live": "",
+      "repo": ""
+    },
+    {
+      "slug": "prepwise",
+      "name": "PrepWise",
+      "kicker": "AI mock interview platform",
+      "year": "2025 – 26",
+      "role": "Solo · full-stack",
+      "platform": "Web (Vercel)",
+      "team": "Solo",
+      "accent": "#c7b3ff",
+      "preview": "interview",
+      "summary": "Upload your resume and an AI voice agent interviews you for the role, then scores every answer and shows where you are weak.",
+      "metric": {
+        "value": "<2s",
+        "label": "question generation"
+      },
+      "chips": [
+        "Next.js",
+        "Vapi",
+        "Gemini"
+      ],
+      "story": {
+        "challenge": "Practising interviews alone is hard: reading questions off a list is nothing like answering a real person out loud, and nobody tells you what to fix.",
+        "approach": "The app parses an uploaded resume (PDF or DOCX, via Mammoth) and Google Gemini writes role-specific questions in under two seconds. Vapi runs the live voice interview with speech-to-text, turn-taking and automatic transcripts. A Gemini evaluation step scores each answer on relevance, structure and completeness.",
+        "outcome": "Firebase Auth and Firestore keep every interview, track weak areas across sessions, and power a performance dashboard for returning users. About ten beta users have tried it."
+      },
+      "stats": [
+        {
+          "value": "<2s",
+          "label": "to generate a question set"
+        },
+        {
+          "value": "3",
+          "label": "scoring dimensions per answer"
+        },
+        {
+          "value": "~10",
+          "label": "beta users"
+        }
+      ],
+      "stack": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Vapi AI",
+        "Google Gemini",
+        "Firebase Auth",
+        "Firestore",
+        "Mammoth"
+      ],
+      "live": "",
+      "repo": "https://github.com/Kmathur08/PrepWise"
+    },
+    {
+      "slug": "rdis-lms",
+      "name": "RDIS LMS",
+      "kicker": "Gamified learning platform",
+      "year": "2026",
+      "role": "Backend developer",
+      "platform": "Web",
+      "team": "6 people",
+      "accent": "#9fe3c4",
+      "preview": "api",
+      "summary": "A learning management system for courses, lessons and quizzes, with XP, badges, streaks and leaderboards to keep students coming back.",
+      "metric": {
+        "value": "6",
+        "label": "API areas I built"
+      },
+      "chips": [
+        "Express",
+        "PostgreSQL",
+        "JWT"
+      ],
+      "story": {
+        "challenge": "Course platforms rarely keep students coming back. Our team of six set out to build an LMS with gamification at its core.",
+        "approach": "I worked on the API: the PostgreSQL schema, seed data and Express server setup, JWT authentication and protected routes, quiz and assessment APIs, the admin dashboard and course content, lesson content management, and the gamification engine.",
+        "outcome": "The platform is deployed on Vercel, and the team tracks progress with weekly reports generated from the repository."
+      },
+      "stats": [
+        {
+          "value": "6",
+          "label": "API areas I built"
+        },
+        {
+          "value": "XP",
+          "label": "badges, streaks and leaderboards"
+        },
+        {
+          "value": "JWT",
+          "label": "auth and protected routes"
+        }
+      ],
+      "stack": [
+        "TypeScript",
+        "Node.js",
+        "Express",
+        "PostgreSQL",
+        "JWT",
+        "Vercel"
+      ],
+      "live": "https://rdis-lms.vercel.app/",
+      "repo": "https://github.com/krishnaw17/SKIT-CSE-2023-2027-48"
+    }
+  ],
+  "experience": [
+    {
+      "when": "Sep 2023",
+      "title": "B.Tech CSE, SKIT",
+      "text": "Computer Science at SKIT Jaipur, CGPA 9.0. Coordinator of the Science & Technology Club."
+    },
+    {
+      "when": "Jul – Aug 2024",
+      "title": "Web Dev Intern",
+      "text": "Kistechno Software, Jaipur. Built and shipped a responsive site with lazy loading and minified assets."
+    },
+    {
+      "when": "Jun – Jul 2025",
+      "title": "Front-end Intern",
+      "text": "PRNIT India LLP, Jaipur. 10+ reusable React and Tailwind components, two client features shipped on time."
+    },
+    {
+      "when": "May – Jul 2026",
+      "title": "Gen AI Intern",
+      "text": "MNIT Jaipur. Hybrid candidate-ranking pipeline with reranking and honeypot detection for the RedRob AI Hackathon."
+    },
+    {
+      "when": "Now",
+      "title": "Shipping & practising",
+      "text": "Meetly, PaperSetu and Thandak this autumn, problems most days, open to internships."
+    }
+  ],
+  "services": [
+    {
+      "title": "Full-stack web apps",
+      "tag": "Idea → live product",
+      "icon": "pen",
+      "description": "From a rough idea to a deployed app: data model, API, auth and a polished interface, shipped to Vercel or Render with a link you can share the same week.",
+      "items": [
+        "React & Next.js",
+        "Node & Express",
+        "PostgreSQL & MongoDB",
+        "Auth",
+        "Deployment"
+      ],
+      "duration": "2–6 weeks",
+      "audience": "Founders & small teams"
+    },
+    {
+      "title": "Real-time & collaborative",
+      "tag": "WebRTC · sockets",
+      "icon": "globe",
+      "description": "Video calls, live chat, multiplayer games and shared boards. I built Meetly end to end, so I know where peer-to-peer connections break and how to keep game state honest.",
+      "items": [
+        "WebRTC",
+        "Socket.io",
+        "Server-side rules",
+        "Drag & drop",
+        "Presence"
+      ],
+      "duration": "3–8 weeks",
+      "audience": "Community & team tools"
+    },
+    {
+      "title": "Data & ML features",
+      "tag": "Python · models",
+      "icon": "bot",
+      "description": "Practical machine learning inside real products: ranking, record matching and estimates that show their uncertainty, backed by Python services and clear data pipelines.",
+      "items": [
+        "Python",
+        "scikit-learn",
+        "XGBoost",
+        "Ranking",
+        "Data pipelines"
+      ],
+      "duration": "2–8 weeks",
+      "audience": "Data-heavy products"
+    },
+    {
+      "title": "Product design & UI",
+      "tag": "Flows · interface",
+      "icon": "grid",
+      "description": "Flows, interfaces and motion designed by the person who will build them, so what you approve in the design is what ships.",
+      "items": [
+        "UX flows",
+        "UI design",
+        "Prototyping",
+        "Motion",
+        "Accessibility"
+      ],
+      "duration": "1–4 weeks",
+      "audience": "Any stage"
+    }
+  ],
+  "tools": [
+    {
+      "name": "C++",
+      "short": "C+",
+      "color": "#6aa8ff"
+    },
+    {
+      "name": "Java",
+      "short": "Jv",
+      "color": "#ffb35c"
+    },
+    {
+      "name": "React",
+      "short": "R",
+      "color": "#7fd1ff"
+    },
+    {
+      "name": "Next.js",
+      "short": "N",
+      "color": "#e8e8e8"
+    },
+    {
+      "name": "TypeScript",
+      "short": "TS",
+      "color": "#6aa8ff"
+    },
+    {
+      "name": "JavaScript",
+      "short": "JS",
+      "color": "#ffe066"
+    },
+    {
+      "name": "Node.js",
+      "short": "No",
+      "color": "#9fff7a"
+    },
+    {
+      "name": "Express",
+      "short": "Ex",
+      "color": "#ffffff"
+    },
+    {
+      "name": "Socket.io",
+      "short": "Io",
+      "color": "#e8e8e8"
+    },
+    {
+      "name": "WebRTC",
+      "short": "Rt",
+      "color": "#ff7a4e"
+    },
+    {
+      "name": "MongoDB",
+      "short": "Mg",
+      "color": "#7dffb0"
+    },
+    {
+      "name": "PostgreSQL",
+      "short": "Pg",
+      "color": "#7fe0ff"
+    },
+    {
+      "name": "Prisma",
+      "short": "Pr",
+      "color": "#c7b3ff"
+    },
+    {
+      "name": "Python",
+      "short": "Py",
+      "color": "#ffe066"
+    },
+    {
+      "name": "scikit-learn",
+      "short": "Sk",
+      "color": "#ffb35c"
+    },
+    {
+      "name": "XGBoost",
+      "short": "Xg",
+      "color": "#9fe3c4"
+    },
+    {
+      "name": "Tailwind",
+      "short": "Tw",
+      "color": "#7fe0ff"
+    },
+    {
+      "name": "Firebase",
+      "short": "Fb",
+      "color": "#ffb35c"
+    },
+    {
+      "name": "Docker",
+      "short": "Dk",
+      "color": "#6aa8ff"
+    },
+    {
+      "name": "Gemini API",
+      "short": "Ge",
+      "color": "#9db0ff"
+    },
+    {
+      "name": "Vapi",
+      "short": "Va",
+      "color": "#c7b3ff"
+    },
+    {
+      "name": "Git",
+      "short": "Gt",
+      "color": "#ff7a4e"
+    },
+    {
+      "name": "Postman",
+      "short": "Pm",
+      "color": "#ffb35c"
+    },
+    {
+      "name": "Figma",
+      "short": "F",
+      "color": "#ff8a65"
+    },
+    {
+      "name": "Vercel",
+      "short": "▲",
+      "color": "#ffffff"
+    }
+  ],
+  "sideProjects": [
+    {
+      "year": "2026",
+      "title": "Candidate ranking",
+      "description": "RedRob AI Hackathon · MNIT internship, team of 4",
+      "tags": "Python · ML",
+      "url": "https://github.com/devanshuk3/Redrob-Codebase"
+    },
+    {
+      "year": "2026",
+      "title": "Entity resolution",
+      "description": "Amazon ML Challenge · business record matching",
+      "tags": "Python · ML",
+      "url": "https://github.com/JaideepSinghChouhan/AmazonMLchallenge"
+    },
+    {
+      "year": "2026",
+      "title": "LearningML",
+      "description": "Logistic regression, KNN and grid search notebooks",
+      "tags": "Jupyter",
+      "url": "https://github.com/Kmathur08/LearningML"
+    },
+    {
+      "year": "2026",
+      "title": "S&T Club site",
+      "description": "Club coordinator · 4+ workshops, 150+ students",
+      "tags": "Next.js",
+      "url": "https://snt-club.vercel.app"
+    },
+    {
+      "year": "2026",
+      "title": "NOVA",
+      "description": "Team productivity app · Sankar Group internship",
+      "tags": "Next.js · Prisma",
+      "url": "https://sankar-group-seven.vercel.app"
+    },
+    {
+      "year": "2024",
+      "title": "ConstiTUT",
+      "description": "Constitution learning platform · led the backend",
+      "tags": "Node · MongoDB",
+      "url": "https://github.com/Kmathur08/ConstiTut"
+    }
+  ],
+  "commitsFallback": [
+    {
+      "message": "Add game panel with picker, lobby and results",
+      "repo": "Meetly",
+      "date": "5 Nov 2026"
+    },
+    {
+      "message": "Add Delhi ward cooling scenario and rupee budget planner",
+      "repo": "Thandak",
+      "date": "31 Oct 2026"
+    },
+    {
+      "message": "Implemented gamification engine, XP, badges, streaks, and leaderboards",
+      "repo": "RDIS LMS",
+      "date": "18 Oct 2026"
+    },
+    {
+      "message": "Pre-render the landing page with structured data, sitemap and llms.txt for search and AI engines",
+      "repo": "Meetly",
+      "date": "6 Nov 2026"
+    },
+    {
+      "message": "Add signed release build for Android",
+      "repo": "Thandak",
+      "date": "30 Oct 2026"
+    },
+    {
+      "message": "Send password reset links and let users reset their password",
+      "repo": "Meetly",
+      "date": "6 Nov 2026"
+    }
+  ]
+}

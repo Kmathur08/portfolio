@@ -355,7 +355,12 @@ const drawers = {
     const cycle = (t * .7) % (msgs.length + 1.5), shown = Math.min(msgs.length, 2 + Math.floor(cycle));
     let my = cy + hh + fs * 1.4;
     ctx.font = `${fs * .9}px Onest, sans-serif`;
+    // on short panels (phones) keep only the newest messages that fit above the input bar
+    const typing = shown < msgs.length && msgs[shown][0] === 0, room = cy + ch - fs * 3.6 - my - (typing ? fs * 2.6 : 0);
+    let first = 0; const bhOf = m => m[1].length * fs * 1.25 + fs * 2;
+    while (first < shown - 1 && msgs.slice(first, shown).reduce((a, m) => a + bhOf(m), 0) > room) first++;
     msgs.slice(0, shown).forEach(([me, lines], i) => {
+      if (i < first) return;
       const lw = Math.max(...lines.map(l => ctx.measureText(l).width)), bw = Math.min(lw + fs * 1.6, cw * .82), bh = lines.length * fs * 1.25 + fs * 1.3;
       const bx = me ? cx + cw - bw - fs : cx + fs;
       const pop = i === shown - 1 && shown > 2 ? Math.min(1, (cycle % 1) * 4) : 1;
@@ -365,7 +370,7 @@ const drawers = {
       ctx.fillText(me ? '6:0' + i + ' ✓✓' : '6:0' + i, bx + bw - fs * .5, my + bh - fs * .35); ctx.textAlign = 'left'; ctx.font = `${fs * .9}px Onest, sans-serif`;
       ctx.globalAlpha = 1; my += bh + fs * .7;
     });
-    if (shown < msgs.length && msgs[shown][0] === 0) { // typing dots
+    if (typing) { // typing dots
       ctx.fillStyle = '#202c33'; rr(ctx, cx + fs, my, fs * 3.6, fs * 1.9, 9); ctx.fill();
       for (let d = 0; d < 3; d++) { ctx.fillStyle = '#8696a0'; ctx.globalAlpha = .4 + .6 * Math.max(0, Math.sin(t * 7 - d)); ctx.beginPath(); ctx.arc(cx + fs * (1.9 + d * .9), my + fs * .95, fs * .2, 0, 7); ctx.fill(); }
       ctx.globalAlpha = 1;

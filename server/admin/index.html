@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex" />
+<title>Portfolio Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+  <!-- sign in -->
+  <main id="login" class="login" hidden>
+    <form id="loginForm" class="login-card" novalidate>
+      <div class="brand"><span class="dot"></span>Portfolio admin</div>
+      <h1>Sign in</h1>
+      <p class="muted">Edit your projects, experience, resume and everything else on your site.</p>
+      <label for="pw">Password</label>
+      <input id="pw" type="password" autocomplete="current-password" required />
+      <p class="err" id="loginErr" role="alert"></p>
+      <button class="btn primary" type="submit">Sign in</button>
+    </form>
+  </main>
+
+  <!-- dashboard -->
+  <div id="app" class="app" hidden>
+    <aside class="side">
+      <div class="brand"><span class="dot"></span>Portfolio admin</div>
+      <nav id="nav" aria-label="Sections"></nav>
+      <div class="side-foot">
+        <a class="btn ghost" href="/" target="_blank" rel="noopener">View site ↗</a>
+        <button class="btn ghost" id="logout" type="button">Sign out</button>
+      </div>
+    </aside>
+    <section class="main">
+      <header class="top">
+        <div><h1 id="title">Profile</h1><p class="muted" id="subtitle"></p></div>
+        <div class="top-r">
+          <span class="state" id="state">All changes saved</span>
+          <button class="btn primary" id="save" type="button" disabled>Save changes</button>
+        </div>
+      </header>
+      <div id="view" class="view"></div>
+    </section>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="admin.js"></script>
+</body>
+</html>

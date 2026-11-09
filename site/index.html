@@ -5,11 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Kshitij Mathur · Product engineer</title>
 <meta name="description" content="Kshitij Mathur is a product designer and engineer from India and a B.Tech CSE student at SKIT Jaipur, building real-time web apps and ML-backed tools." />
-<script>document.documentElement.classList.add(matchMedia('(prefers-reduced-motion: reduce)').matches ? 'rm' : 'anim');</script>
+<script>
+document.documentElement.classList.add(matchMedia('(prefers-reduced-motion: reduce)').matches ? 'rm' : 'anim');
+// Safety net for slow or flaky phone connections: if the intro still hasn't finished after 8 s, show the page without it.
+setTimeout(function () {
+  var r = document.documentElement, l = document.getElementById('loader');
+  if (r.classList.contains('loading')) { r.classList.remove('loading', 'anim'); if (l) l.remove(); }
+}, 8000);
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600&family=Geist+Mono:wght@400&family=Playwrite+US+Trad:wght@300&display=swap" rel="stylesheet" />
-<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&display=swap" rel="stylesheet" />
+<!-- fonts load in the background so a slow font server never blocks the page -->
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600&family=Geist+Mono:wght@400&family=Playwrite+US+Trad:wght@300&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+<noscript><link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600&family=Geist+Mono:wght@400&family=Playwrite+US+Trad:wght@300&display=swap" rel="stylesheet" /><link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&display=swap" rel="stylesheet" /></noscript>
 <style>
   :root {
     --bg: #0b0806;
@@ -490,6 +499,22 @@
     .stat { padding: 24px 18px; }
         .q { padding: 24px; }
     .q p { font-size: 16px; }
+  }
+  /* Phones: readable header over content, compact palette dock, compact platform links */
+  nav::before { content: ""; position: absolute; left: 0; right: 0; top: -20px; bottom: -28px; z-index: -1; pointer-events: none; opacity: 0; transition: opacity .4s;
+    background: linear-gradient(180deg, #0a0605f2 0%, #0a0605b8 62%, #0a060500 100%); }
+  @media (max-width: 1000px) { html.scrolled nav::before { opacity: 1; } }
+  @media (max-width: 760px) {
+    nav { top: 14px; }
+    .dock:not(.open) > button:not([aria-pressed="true"]), .dock:not(.open) > .pick:not(.on) { display: none; }
+    .dock { gap: 8px; padding: 5px; }
+    .dock button, .dock .pick { width: 30px; height: 30px; }
+    .s-card { position: relative; top: auto !important; margin-bottom: 22px; }
+  }
+  @media (max-width: 640px) {
+    .pc header a.mono { font-size: 0; width: 34px; height: 34px; padding: 0; display: grid; place-items: center; flex-shrink: 0; }
+    .pc header a.mono::after { content: "↗"; font-size: 14px; color: var(--t1); }
+    .pc h3 { font-size: 20px; overflow-wrap: anywhere; }
   }
   @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
 </style>
@@ -1355,11 +1380,11 @@
   }
  ]
 }</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Draggable.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script src="vendor/three.min.js"></script>
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/ScrollTrigger.min.js"></script>
+<script src="vendor/Draggable.min.js"></script>
+<script src="vendor/lenis.min.js"></script>
 <script src="previews.js"></script>
 <script>
 gsap.registerPlugin(ScrollTrigger, Draggable);
@@ -1530,6 +1555,19 @@ $$('.dock button').forEach(b => b.addEventListener('click', () => {
   shownPal = -1; applyPalette();
 }));
 startAuto();
+// Phones: the dock shows only the current swatch; tapping it opens the full row, choosing closes it again.
+{
+  const dock = $('.dock'), small = matchMedia('(max-width: 760px)');
+  dock.addEventListener('click', e => {
+    if (!small.matches) return;
+    if (!dock.classList.contains('open')) { e.preventDefault(); e.stopPropagation(); dock.classList.add('open'); return; }
+    if (e.target.closest('button')) setTimeout(() => dock.classList.remove('open'), 350);
+  }, true);
+  pickIn.addEventListener('change', () => dock.classList.remove('open'));
+  document.addEventListener('pointerdown', e => { if (!e.target.closest('.dock')) dock.classList.remove('open'); });
+}
+// Header gets a soft backing once the page scrolls, so it never sits on top of text.
+{ const onScroll = () => document.documentElement.classList.toggle('scrolled', scrollY > 40); addEventListener('scroll', onScroll, { passive: true }); onScroll(); }
 
 /* ================= WebGL fluid gradient ================= */
 const intro = { v: 0 };
@@ -1798,10 +1836,10 @@ function heroIntro() {
 }
 (function preload() {
   const loader = $('#loader');
-  const skip = reduce || !GL || performance.now() > 4000;
-  if (lenis) lenis.stop();
+  const skip = reduce || !GL || !loader || performance.now() > 4000;
+  if (lenis && !skip) lenis.stop();
   if (skip) {
-    intro.v = 1; loader.remove(); root.classList.remove('loading');
+    intro.v = 1; if (loader) loader.remove(); root.classList.remove('loading');
     if (reduce) { $$('.hello svg path').forEach(p => p.style.strokeDashoffset = 0); }
     heroIntro(); return;
   }
@@ -1835,9 +1873,11 @@ if (!reduce) ScrollTrigger.batch('section [data-in]', { start: 'top 90%', once: 
 /* ================= Stacking cards ================= */
 const sc = gsap.utils.toArray('.s-card');
 const stickTop = () => innerWidth <= 760 ? 84 : 110;
+// On phones each card is taller than the screen, so stacking would hide its bottom half: cards just scroll normally there.
+const stacking = !matchMedia('(max-width: 760px)').matches;
 sc.forEach((card, i) => {
-  card.style.top = (stickTop() + i * 18) + 'px';
-  if (!reduce && i < sc.length - 1) {
+  if (stacking) card.style.top = (stickTop() + i * 18) + 'px';
+  if (!reduce && stacking && i < sc.length - 1) {
     const endAt = () => 'top ' + (stickTop() + (i + 1) * 18) + 'px';
     gsap.to(card, { scale: .92 + i * .015, ease: 'none',
       scrollTrigger: { trigger: sc[i + 1], start: 'top 85%', end: endAt, scrub: true, invalidateOnRefresh: true } });
