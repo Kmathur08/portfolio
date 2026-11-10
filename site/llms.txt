@@ -11,6 +11,7 @@ Kshitij Mathur is based in Jaipur, India. Education: B.Tech CSE · SKIT Jaipur �
 - **PaperSetu**: Exam papers for teachers. An offline Android app for school teachers, in Hindi and English, that builds exam question papers in minutes and exports print-ready PDFs. Stack: Kotlin, Android WebView, JavaScript, Firebase, Firestore, Cloudflare Workers, Gemini API, Brevo.
 - [PrepWise](https://github.com/Kmathur08/PrepWise): AI mock interview platform. Upload your resume and an AI voice agent interviews you for the role, then scores every answer and shows where you are weak. Stack: Next.js, React, TypeScript, Vapi AI, Google Gemini, Firebase Auth, Firestore, Mammoth. Code: https://github.com/Kmathur08/PrepWise
 - [RDIS LMS](https://rdis-lms.vercel.app/): Gamified learning platform. A learning management system for courses, lessons and quizzes, with XP, badges, streaks and leaderboards to keep students coming back. Stack: TypeScript, Node.js, Express, PostgreSQL, JWT, Vercel. Code: https://github.com/krishnaw17/SKIT-CSE-2023-2027-48
+- [ConstiTUT](https://github.com/Kmathur08/ConstiTut): Learn the Constitution by playing. A web app that teaches Parts V and VI of the Indian Constitution (the President and the Governor) through short lessons, a video, an MCQ quiz, a crossword and a quest. Stack: HTML, Tailwind CSS, JavaScript, Node.js, Express, express-session, bcrypt, Nodemailer, Vercel. Code: https://github.com/Kmathur08/ConstiTut
 
 ## Experience
 
@@ -38,7 +39,6 @@ C++, Java, React, Next.js, TypeScript, JavaScript, Node.js, Express, Socket.io, 
 - [LearningML](https://github.com/Kmathur08/LearningML) (2026): Logistic regression, KNN and grid search notebooks
 - [S&T Club site](https://snt-club.vercel.app) (2026): Club coordinator · 4+ workshops, 150+ students
 - [NOVA](https://sankar-group-seven.vercel.app) (2026): Team productivity app · Sankar Group internship
-- [ConstiTUT](https://github.com/Kmathur08/ConstiTut) (2024): Constitution learning platform · led the backend
 
 ## FAQ
 
@@ -46,7 +46,7 @@ C++, Java, React, Next.js, TypeScript, JavaScript, Node.js, Express, Socket.io, 
 I'm Kshitij Mathur, a product designer and engineer from India, studying Computer Science at SKIT Jaipur. I build real-time web apps, ML-backed tools and products people can use the same day. Education: B.Tech CSE · SKIT Jaipur · CGPA 9.0.
 
 ### What projects has Kshitij built?
-Meetly: A browser-based video meeting app for small groups: calls for up to six people, screen sharing, chat and five multiplayer games, with nothing to install. Thandak: A free heat-safety service in Hindi and English that tells a family how risky today's heat is and what to do, on the web, Android, iOS and WhatsApp. PaperSetu: An offline Android app for school teachers, in Hindi and English, that builds exam question papers in minutes and exports print-ready PDFs. PrepWise: Upload your resume and an AI voice agent interviews you for the role, then scores every answer and shows where you are weak. RDIS LMS: A learning management system for courses, lessons and quizzes, with XP, badges, streaks and leaderboards to keep students coming back.
+Meetly: A browser-based video meeting app for small groups: calls for up to six people, screen sharing, chat and five multiplayer games, with nothing to install. Thandak: A free heat-safety service in Hindi and English that tells a family how risky today's heat is and what to do, on the web, Android, iOS and WhatsApp. PaperSetu: An offline Android app for school teachers, in Hindi and English, that builds exam question papers in minutes and exports print-ready PDFs. PrepWise: Upload your resume and an AI voice agent interviews you for the role, then scores every answer and shows where you are weak. RDIS LMS: A learning management system for courses, lessons and quizzes, with XP, badges, streaks and leaderboards to keep students coming back. ConstiTUT: A web app that teaches Parts V and VI of the Indian Constitution (the President and the Governor) through short lessons, a video, an MCQ quiz, a crossword and a quest.
 
 ### What technologies does Kshitij work with?
 C++, Java, React, Next.js, TypeScript, JavaScript, Node.js, Express, Socket.io, WebRTC, MongoDB, PostgreSQL, Prisma, Python, scikit-learn, XGBoost, Tailwind, Firebase, Docker, Gemini API, Vapi, Git, Postman, Figma and Vercel.

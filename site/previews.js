@@ -24,6 +24,8 @@ const CODE = [
   [['// ', '#666'], ['shipped ✓ 98 perf · 100 a11y', '#5ee69a']],
 ];
 
+let _ctImg = null;
+function ctImg() { if (!_ctImg) { _ctImg = new Image(); _ctImg.decoding = 'async'; _ctImg.src = 'img/constitut-home.jpg'; } return _ctImg; }
 const drawers = {
   dash(ctx, w, h, t) {
     bgGrid(ctx, w, h);
@@ -482,6 +484,39 @@ const drawers = {
     ctx.fillStyle = '#1a1626'; rr(ctx, w * .05, h * .8, w * .9, h * .12, 10); ctx.fill();
     ctx.fillStyle = '#a99fc2'; ctx.font = `${fs * .8}px Geist Mono, monospace`; ctx.fillText('AI ›', w * .05 + 14, h * .8 + h * .075);
     ctx.fillStyle = '#f2eefc'; ctx.font = `${fs * .95}px Onest, sans-serif`; ctx.fillText(q.slice(0, chars), w * .05 + 14 + fs * 2.6, h * .8 + h * .075);
+  },
+  /* ConstiTUT: the real home page in a browser window, scrolling top to bottom */
+  constitut(ctx, w, h, t) {
+    ctx.fillStyle = '#10131c'; ctx.fillRect(0, 0, w, h);
+    glow(ctx, w * .8, h * .1, w * .45, '#ff9a3c22'); glow(ctx, w * .15, h * .9, w * .4, '#5e80f01c');
+    const m = Math.max(10, w * .045), bx = m, by = m * .9, bw = w - m * 2, bh = h - m * 1.8, bar = Math.max(22, h * .075);
+    ctx.save(); ctx.shadowColor = '#00000080'; ctx.shadowBlur = 24; ctx.shadowOffsetY = 8;
+    ctx.fillStyle = '#1d212c'; rr(ctx, bx, by, bw, bh, 12); ctx.fill(); ctx.restore();
+    // window bar: traffic lights + address
+    [['#ff5f57', 0], ['#febc2e', 1], ['#28c840', 2]].forEach(([c, i]) => { ctx.fillStyle = c; ctx.beginPath(); ctx.arc(bx + 14 + i * 13, by + bar / 2, 4, 0, 7); ctx.fill(); });
+    const ux = bx + 62, uw = Math.min(bw - 80, 300);
+    ctx.fillStyle = '#2a2f3c'; rr(ctx, ux, by + bar * .22, uw, bar * .56, bar * .28); ctx.fill();
+    ctx.fillStyle = '#9aa1b5'; ctx.font = `${Math.max(9, bar * .36)}px Geist Mono, monospace`; ctx.textBaseline = 'middle';
+    ctx.fillText('constitut · home', ux + 12, by + bar / 2 + 1); ctx.textBaseline = 'alphabetic';
+    // page
+    const px = bx + 1, py = by + bar, pw = bw - 2, ph = bh - bar - 1;
+    ctx.save(); rr(ctx, px, py, pw, ph, 0); ctx.clip();
+    ctx.fillStyle = '#f4f4f4'; ctx.fillRect(px, py, pw, ph);
+    const img = ctImg();
+    if (img.complete && img.naturalWidth) {
+      const ih = img.naturalHeight * pw / img.naturalWidth, travel = Math.max(0, ih - ph);
+      // top to bottom only: hold at the top, scroll down slowly, hold at the bottom, then fade back to the top
+      const cyc = 12.2, k = (((t - 9) % cyc) + cyc) % cyc, // mount() adds the name length (9) to t; start at the top
+        ease = x => x < .5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2;
+      const f = k < 2.5 ? 0 : k < 9 ? ease((k - 2.5) / 6.5) : 1;
+      const fade = k > 11 ? (k - 11) / 1.2 : 0;
+      ctx.drawImage(img, px, py - travel * f, pw, ih);
+      if (fade > 0) { ctx.globalAlpha = fade; ctx.drawImage(img, px, py, pw, ih); ctx.globalAlpha = 1; }
+      // scrollbar
+      const sh = Math.max(20, ph * ph / ih);
+      ctx.fillStyle = '#00000033'; rr(ctx, px + pw - 6, py + 3 + (ph - sh - 6) * f * (1 - fade), 3, sh, 2); ctx.fill();
+    }
+    ctx.restore();
   },
   /* RDIS LMS: API code */
   api(ctx, w, h, t) { drawers.code(ctx, w, h, t, apiLines, 'gamification.ts'); },

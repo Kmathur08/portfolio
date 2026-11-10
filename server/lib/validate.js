@@ -8,7 +8,7 @@ const list = (v, fn, max = 60) => (Array.isArray(v) ? v : []).slice(0, max).map(
 const words = v => (Array.isArray(v) ? v : String(v || '').split(',')).map(x => str(x, 80)).filter(Boolean).slice(0, 30);
 const slug = (v, i) => str(v, 60).toLowerCase().replace(/[^a-z0-9-]+/g, '-').replace(/^-|-$/g, '') || `project-${i + 1}`;
 
-export const PREVIEWS = ['meet', 'thandak', 'paper', 'interview', 'api', 'kanban', 'dash', 'code', 'chat', 'phone', 'sphere', 'gradient', 'kinetic'];
+export const PREVIEWS = ['meet', 'thandak', 'paper', 'interview', 'api', 'constitut', 'kanban', 'dash', 'code', 'chat', 'phone', 'sphere', 'gradient', 'kinetic'];
 export const ICONS = ['pen', 'globe', 'bot', 'grid'];
 
 export function cleanContent(c = {}) {

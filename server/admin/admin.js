@@ -19,7 +19,7 @@
 
   // ---------- section definitions ----------
   const F = (k, label, type = 'text', extra = {}) => ({ k, label, type, ...extra });
-  const PREVIEW_NAMES = { meet: 'Video call (Meetly)', thandak: 'Heat app + WhatsApp (Thandak)', paper: 'Sign-in + exam paper (PaperSetu)', interview: 'Voice interview (PrepWise)', api: 'API code (RDIS LMS)', kanban: 'Kanban board', dash: 'Analytics dashboard', code: 'Code editor', chat: 'AI chat', phone: 'Phone feed', sphere: 'Particle sphere', gradient: 'Gradient blob', kinetic: 'Kinetic type' };
+  const PREVIEW_NAMES = { meet: 'Video call (Meetly)', thandak: 'Heat app + WhatsApp (Thandak)', paper: 'Sign-in + exam paper (PaperSetu)', interview: 'Voice interview (PrepWise)', api: 'API code (RDIS LMS)', constitut: 'Home page screenshot (ConstiTUT)', kanban: 'Kanban board', dash: 'Analytics dashboard', code: 'Code editor', chat: 'AI chat', phone: 'Phone feed', sphere: 'Particle sphere', gradient: 'Gradient blob', kinetic: 'Kinetic type' };
   const ICON_NAMES = { pen: 'Pen', globe: 'Globe', bot: 'Robot', grid: 'Grid' };
   const SECTIONS = {
     profile: { title: 'Profile', sub: 'Your name, intro, contact details and links.', kind: 'object', groups: [
