@@ -32,6 +32,8 @@
 <!-- /seo:head -->
 <script>
 document.documentElement.classList.add(matchMedia('(prefers-reduced-motion: reduce)').matches ? 'rm' : 'anim');
+// Phones and low-power devices get a lighter render path (no backdrop blur, cheaper background, 30 fps shader).
+if (matchMedia('(pointer: coarse), (max-width: 760px)').matches || (navigator.hardwareConcurrency || 8) <= 4 || (navigator.deviceMemory || 8) <= 4) document.documentElement.classList.add('lite');
 // Safety net for slow or flaky phone connections: if the intro still hasn't finished after 8 s, show the page without it.
 setTimeout(function () {
   var r = document.documentElement, l = document.getElementById('loader');
@@ -199,6 +201,15 @@ setTimeout(function () {
   .eyebrow::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--warm); box-shadow: 0 0 10px var(--warm); }
   .eyebrow b { font-weight: 400; color: var(--t1); }
   html.anim [data-in] { opacity: 0; transform: translateY(30px); filter: blur(10px); }
+  /* Lite (phones): backdrop blur over the animated background forces a re-blur of every glass panel each frame,
+     and animated filters are expensive, so swap them for solid tints that look the same at a glance. */
+  html.lite .glass { backdrop-filter: none; -webkit-backdrop-filter: none; background: #1d1410e6; }
+  html.lite .media-tag { backdrop-filter: none; -webkit-backdrop-filter: none; background: #000b; }
+  html.lite .cs-bg { backdrop-filter: none; -webkit-backdrop-filter: none; background: #0b0806e8; }
+  html.lite.anim [data-in] { filter: none; }
+  /* Fewer compositor layers on phones: these hints only matter for desktop hover/stacking effects. */
+  html.lite .magnetic, html.lite .s-card, html.lite .s-in, html.lite .ld-c { will-change: auto; }
+  html.lite .s-in { transform-style: flat; }
 
   /* Stacking showcase */
   .stack { position: relative; }
@@ -1491,6 +1502,7 @@ setTimeout(function () {
 gsap.registerPlugin(ScrollTrigger, Draggable);
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+const LITE = document.documentElement.classList.contains('lite');
 const DEMO = new URLSearchParams(location.search).get('demo');
 const root = document.documentElement;
 const $ = (s, c = document) => c.querySelector(s), $$ = (s, c = document) => [...c.querySelectorAll(s)];
@@ -1622,7 +1634,9 @@ let palMode = 'auto', sectionPal = 0, shownPal = -1;
 function tweenPalette(idx) {
   if (idx === shownPal) return; shownPal = idx;
   const to = {}; PALS[idx].c.forEach((c, i) => { to['r' + i] = c[0]; to['g' + i] = c[1]; to['b' + i] = c[2]; });
-  gsap.to(PS, { ...to, duration: reduce ? 0 : 1.8, ease: 'power2.inOut', overwrite: 'auto', onUpdate: paintCSS, onComplete: paintCSS });
+  // The WebGL background reads PS directly, so it fades every frame regardless. Rewriting the CSS colour variables
+  // on <html> restyles the whole page, so on lite devices do it once at the end instead of every frame mid-scroll.
+  gsap.to(PS, { ...to, duration: reduce ? 0 : 1.8, ease: 'power2.inOut', overwrite: 'auto', onUpdate: LITE ? () => { glDirty = true; } : paintCSS, onComplete: paintCSS });
   $('.dock .dl').textContent = (palMode === 'auto' ? 'Auto · ' : 'Locked · ') + PALS[idx].n;
 }
 function applyPalette() { tweenPalette(palMode === 'auto' ? sectionPal : palMode); }
@@ -1687,9 +1701,9 @@ const GL = (() => {
     float noise(vec2 p){ vec2 i = floor(p), f = fract(p); vec2 u = f*f*(3.-2.*f);
       return mix(mix(hash(i), hash(i+vec2(1,0)), u.x), mix(hash(i+vec2(0,1)), hash(i+vec2(1,1)), u.x), u.y); }`;
   const rtOpts = { minFilter: THREE.LinearFilter, magFilter: THREE.LinearFilter, format: THREE.RGBAFormat, type: THREE.UnsignedByteType, depthBuffer: false, stencilBuffer: false };
-  const SIM = 192;
+  const SIM = LITE ? 128 : 192;
   let simA = new THREE.WebGLRenderTarget(SIM, SIM, rtOpts), simB = new THREE.WebGLRenderTarget(SIM, SIM, rtOpts);
-  let q = innerWidth < 760 ? .55 : .5;
+  let q = LITE ? .38 : innerWidth < 760 ? .55 : .5;
   const rtScene = new THREE.WebGLRenderTarget(4, 4, rtOpts);
 
   // --- trail simulation: R = intensity, GB = velocity (0.5 centred); advects itself + gentle noise swirl
@@ -1810,7 +1824,7 @@ const GL = (() => {
   clearInit();
   function sizeScene() { rtScene.setSize(Math.max(2, Math.round(innerWidth * q)), Math.max(2, Math.round(innerHeight * q))); }
   function resize() {
-    renderer.setPixelRatio(Math.min(devicePixelRatio, 1.25));
+    renderer.setPixelRatio(LITE ? 1 : Math.min(devicePixelRatio, 1.25));
     renderer.setSize(innerWidth, innerHeight, false);
     GU.uRes.value.set(innerWidth, innerHeight); CU.uRes.value.set(innerWidth, innerHeight); SU.uAspect.value = innerWidth / innerHeight;
     sizeScene(); glDirty = true;
@@ -1824,8 +1838,10 @@ const GL = (() => {
   let scrollT = 0, scrollV = 0, lastNow = performance.now(), ft = 0, fc = 0;
   function frame(now) {
     requestAnimationFrame(frame);
-    const dt = now - lastNow; lastNow = now;
     if (document.hidden) return;
+    // lite: the gradient moves slowly, so 30 fps looks the same and halves the GPU work while scrolling
+    if (LITE && now - lastNow < 30) return;
+    const dt = now - lastNow; lastNow = now;
     if (reduce && !glDirty && intro.v === CU.uIntro.value) return;
     glDirty = false;
     const t = reduce ? 10 : clock.getElapsedTime();
@@ -1855,7 +1871,7 @@ const GL = (() => {
     renderer.setRenderTarget(null); renderer.render(cScene, cam);
     // adaptive quality: drop the gradient resolution if frames are slow
     if (dt > 0 && dt < 120) { ft += dt; fc++; }
-    if (fc >= 90) { const avg = ft / fc; ft = fc = 0; if (avg > 21 && q > .3) { q = Math.max(.3, q * .8); sizeScene(); } }
+    if (fc >= 90) { const avg = ft / fc; ft = fc = 0; if (avg > (LITE ? 40 : 21) && q > .3) { q = Math.max(.3, q * .8); sizeScene(); } }
   }
   requestAnimationFrame(frame);
   return { renderer };
@@ -1919,13 +1935,13 @@ if (fine && !reduce) $$('.magnetic').forEach(el => {
 function heroIntro() {
   if (lenis) lenis.start();
   if (reduce) return;
-  const tl = gsap.timeline();
+  const tl = gsap.timeline({ onComplete: () => { if (LITE) gsap.set('.hero h1 .ch, .hero-meta > *, .dock', { clearProps: 'transform' }); } });
   tl.from('nav .logo, nav .menu, nav .nav-r > *', { y: -28, opacity: 0, duration: 1.1, ease: 'expo.out', stagger: .07 }, 0)
     .from('nav .menu a', { y: -10, opacity: 0, duration: .8, ease: 'expo.out', stagger: .04 }, .15)
     .from('.dock', { x: 80, opacity: 0, duration: 1.2, ease: 'expo.out' }, .7)
     .from('.hero-meta > *', { y: 24, opacity: 0, duration: 1, ease: 'expo.out', stagger: .1 }, .8)
     .from('.hero h1 .ch', { yPercent: 60, rotateX: -100, opacity: 0, duration: 1.4, ease: 'expo.out', stagger: .03 }, .1)
-    .to('.hero [data-in]', { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1.2, stagger: .08, ease: 'expo.out', onComplete: () => gsap.set('.hero [data-in]', { filter: 'none' }) }, .35);
+    .to('.hero [data-in]', { opacity: 1, y: 0, ...(LITE ? {} : { filter: 'blur(0px)' }), duration: 1.2, stagger: .08, ease: 'expo.out', onComplete: () => gsap.set('.hero [data-in]', { filter: 'none' }) }, .35);
   // handwriting: soft mask sweep + travelling nib, then the underline draws
   const hw = $('.hello .hw'), nib = $('.nib'), hp = { p: 1 };
   tl.set(nib, { opacity: 1 }, .2)
@@ -1970,7 +1986,7 @@ if (!reduce) gsap.to('.hero h1', { yPercent: -18, opacity: .2, ease: 'none', scr
 
 /* Generic reveals */
 if (!reduce) ScrollTrigger.batch('section [data-in]', { start: 'top 90%', once: true,
-  onEnter: els => gsap.to(els, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1.1, stagger: .09, ease: 'expo.out', onComplete: () => gsap.set(els, { filter: 'none' }) }) });
+  onEnter: els => gsap.to(els, { opacity: 1, y: 0, ...(LITE ? {} : { filter: 'blur(0px)' }), duration: 1.1, stagger: .09, ease: 'expo.out', onComplete: () => gsap.set(els, { filter: 'none' }) }) });
 
 /* ================= Stacking cards ================= */
 const sc = gsap.utils.toArray('.s-card');

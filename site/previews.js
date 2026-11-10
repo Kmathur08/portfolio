@@ -538,14 +538,20 @@ const apiLines = [
 function mount(opts = {}) {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const list = [...document.querySelectorAll('canvas[data-draw]')].map(cv => ({ cv, ctx: cv.getContext('2d'), fn: drawers[cv.dataset.draw], vis: false }));
-  function size() { const d = Math.min(devicePixelRatio, 2); list.forEach(p => { const r = p.cv.getBoundingClientRect(); if (!r.width) return; p.w = r.width; p.h = r.height; p.cv.width = r.width * d; p.cv.height = r.height * d; p.ctx.setTransform(d, 0, 0, d, 0, 0); }); }
+  function size() { const d = Math.min(devicePixelRatio, document.documentElement.classList.contains('lite') ? 1.5 : 2); list.forEach(p => { const r = p.cv.getBoundingClientRect(); if (!r.width) return; p.w = r.width; p.h = r.height; p.cv.width = r.width * d; p.cv.height = r.height * d; p.ctx.setTransform(d, 0, 0, d, 0, 0); }); }
   addEventListener('resize', size); size();
   const io = new IntersectionObserver(es => es.forEach(e => { const p = list.find(p => p.cv === e.target); if (p) { p.vis = e.isIntersecting; if (p.vis && !p.w) size(); } }), { rootMargin: '100px' });
   list.forEach(p => io.observe(p.cv));
   const state = { paused: reduce, time: 0, size };
   let last = performance.now();
+  // Lite (phones): draw at 30 fps and hold the current frame while the page is being scrolled,
+  // so scrolling gets the whole frame budget. Drawing resumes ~150 ms after scrolling stops.
+  const lite = document.documentElement.classList.contains('lite');
+  let scrolling = 0;
+  if (lite) addEventListener('scroll', () => { scrolling = performance.now(); }, { passive: true });
   (function loop(now) {
     requestAnimationFrame(loop);
+    if (lite && (now - last < 30 || now - scrolling < 150)) return;
     const dt = Math.min((now - last) / 1000, .05) || 0; last = now;
     if (!state.paused) state.time += dt;
     for (const p of list) {
