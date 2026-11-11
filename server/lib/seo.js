@@ -22,14 +22,14 @@ export function buildSeo(content = {}, siteUrl = '') {
   const sameAs = [links.github, links.linkedin, links.leetcode, links.codolio].filter(Boolean);
   const [city, country] = (p.location || 'Jaipur, India').split(',').map(s => s.trim());
   const school = (p.education || '').split('·').map(s => s.trim());
-  const jobs = exp.filter(e => /intern/i.test(e.title));
+  const jobs = exp.filter(e => /intern|engineer|developer/i.test(e.title));
 
   // ---------- answers to the questions people (and answer engines) actually ask ----------
   const faq = [
     [`Who is ${name}?`, `${lead}${p.education ? ` Education: ${p.education}.` : ''}`],
     [`What projects has ${p.firstName || name} built?`, projects.map(x => `${x.name}: ${x.summary}`).join(' ')],
     [`What technologies does ${p.firstName || name} work with?`, `${list(tools)}.`],
-    jobs.length && [`Where has ${p.firstName || name} interned?`, jobs.map(e => `${e.title} (${e.when}): ${e.text}`).join(' ')],
+    jobs.length && [`Where has ${p.firstName || name} worked?`, jobs.map(e => `${e.title} (${e.when}): ${e.text}`).join(' ')],
     [`Is ${p.firstName || name} available for work?`, `${p.availability || 'Yes'}.${p.usualReply ? ` Usual reply time: ${p.usualReply.toLowerCase()}.` : ''}`],
     p.email && [`How can I contact ${name}?`, `Email ${p.email}${links.linkedin ? `, or message on LinkedIn (${links.linkedin})` : ''}${links.github ? `. Code is on GitHub at ${links.github}` : ''}.`]
   ].filter(Boolean);

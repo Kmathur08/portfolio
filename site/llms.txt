@@ -15,11 +15,11 @@ Kshitij Mathur is based in Jaipur, India. Education: B.Tech CSE · SKIT Jaipur �
 
 ## Experience
 
-- B.Tech CSE, SKIT (Sep 2023): Computer Science at SKIT Jaipur, CGPA 9.0. Coordinator of the Science & Technology Club.
+- B.Tech CSE, SKIT (Sep 2023): Computer Science at SKIT Jaipur, CGPA 9.0. Science & Technology Club: team member, then coordinator, now mentor.
 - Web Dev Intern (Jul – Aug 2024): Kistechno Software, Jaipur. Built and shipped a responsive site with lazy loading and minified assets.
 - Front-end Intern (Jun – Jul 2025): PRNIT India LLP, Jaipur. 10+ reusable React and Tailwind components, two client features shipped on time.
 - Gen AI Intern (May – Jul 2026): MNIT Jaipur. Hybrid candidate-ranking pipeline with reranking and honeypot detection for the RedRob AI Hackathon.
-- Shipping & practising (Now): Meetly, PaperSetu and Thandak this autumn, problems most days, open to internships.
+- Web Developer Intern (Sep 2026 – Now): ThinkYantra Solution Pvt. Ltd., Jaipur. Built 5 REST APIs and fixed around 50 bugs on a live MERN-stack project.
 
 ## Skills
 
@@ -32,14 +32,6 @@ C++, Java, React, Next.js, TypeScript, JavaScript, Node.js, Express, Socket.io, 
 - Data & ML features: Practical machine learning inside real products: ranking, record matching and estimates that show their uncertainty, backed by Python services and clear data pipelines.
 - Product design & UI: Flows, interfaces and motion designed by the person who will build them, so what you approve in the design is what ships.
 
-## Side projects
-
-- [Candidate ranking](https://github.com/devanshuk3/Redrob-Codebase) (2026): RedRob AI Hackathon · MNIT internship, team of 4
-- [Entity resolution](https://github.com/JaideepSinghChouhan/AmazonMLchallenge) (2026): Amazon ML Challenge · business record matching
-- [LearningML](https://github.com/Kmathur08/LearningML) (2026): Logistic regression, KNN and grid search notebooks
-- [S&T Club site](https://snt-club.vercel.app) (2026): Club coordinator · 4+ workshops, 150+ students
-- [NOVA](https://sankar-group-seven.vercel.app) (2026): Team productivity app · Sankar Group internship
-
 ## FAQ
 
 ### Who is Kshitij Mathur?
@@ -51,8 +43,8 @@ Meetly: A browser-based video meeting app for small groups: calls for up to six 
 ### What technologies does Kshitij work with?
 C++, Java, React, Next.js, TypeScript, JavaScript, Node.js, Express, Socket.io, WebRTC, MongoDB, PostgreSQL, Prisma, Python, scikit-learn, XGBoost, Tailwind, Firebase, Docker, Gemini API, Vapi, Git, Postman, Figma and Vercel.
 
-### Where has Kshitij interned?
-Web Dev Intern (Jul – Aug 2024): Kistechno Software, Jaipur. Built and shipped a responsive site with lazy loading and minified assets. Front-end Intern (Jun – Jul 2025): PRNIT India LLP, Jaipur. 10+ reusable React and Tailwind components, two client features shipped on time. Gen AI Intern (May – Jul 2026): MNIT Jaipur. Hybrid candidate-ranking pipeline with reranking and honeypot detection for the RedRob AI Hackathon.
+### Where has Kshitij worked?
+Web Dev Intern (Jul – Aug 2024): Kistechno Software, Jaipur. Built and shipped a responsive site with lazy loading and minified assets. Front-end Intern (Jun – Jul 2025): PRNIT India LLP, Jaipur. 10+ reusable React and Tailwind components, two client features shipped on time. Gen AI Intern (May – Jul 2026): MNIT Jaipur. Hybrid candidate-ranking pipeline with reranking and honeypot detection for the RedRob AI Hackathon. Web Developer Intern (Sep 2026 – Now): ThinkYantra Solution Pvt. Ltd., Jaipur. Built 5 REST APIs and fixed around 50 bugs on a live MERN-stack project.
 
 ### Is Kshitij available for work?
 Open to projects & collaborations. Usual reply time: within 24 hours.
