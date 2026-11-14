@@ -37,6 +37,12 @@ C++, Java, React, Next.js, TypeScript, JavaScript, Node.js, Express, Socket.io, 
 ### Who is Kshitij Mathur?
 I'm Kshitij Mathur, a product designer and engineer from India, studying Computer Science at SKIT Jaipur. I build real-time web apps, ML-backed tools and products people can use the same day. Education: B.Tech CSE · SKIT Jaipur · CGPA 9.0.
 
+### What is Kshitij doing right now?
+Kshitij is a Web Developer Intern at ThinkYantra Solution Pvt. Ltd. (Sep 2026 – Now). Built 5 REST APIs and fixed around 50 bugs on a live MERN-stack project.
+
+### Where does Kshitij study?
+Kshitij is doing a B.Tech CSE at SKIT Jaipur (CGPA 9.0).
+
 ### What projects has Kshitij built?
 Meetly: A browser-based video meeting app for small groups: calls for up to six people, screen sharing, chat and five multiplayer games, with nothing to install. Thandak: A free heat-safety service in Hindi and English that tells a family how risky today's heat is and what to do, on the web, Android, iOS and WhatsApp. PaperSetu: An offline Android app for school teachers, in Hindi and English, that builds exam question papers in minutes and exports print-ready PDFs. PrepWise: Upload your resume and an AI voice agent interviews you for the role, then scores every answer and shows where you are weak. RDIS LMS: A learning management system for courses, lessons and quizzes, with XP, badges, streaks and leaderboards to keep students coming back. ConstiTUT: A web app that teaches Parts V and VI of the Indian Constitution (the President and the Governor) through short lessons, a video, an MCQ quiz, a crossword and a quest.
 
