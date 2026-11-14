@@ -16,17 +16,30 @@ export function buildSeo(content = {}, siteUrl = '') {
   const role = 'Full-stack developer & product engineer';
   const title = `${name} · ${role}`;
   const lead = p.lead || `${name}, ${role.toLowerCase()} from India.`;
-  const desc = lead.length <= 160 ? lead : lead.slice(0, 157).replace(/\s+\S*$/, '') + '…';
+  const [city0] = (p.location || 'Jaipur, India').split(',');
+  const top3 = (content.projects || []).slice(0, 3).map(x => x.name);
+  // snippets get cut around 155-160 characters, so write a complete sentence that fits instead of truncating the lead
+  const who = `${name} is a full-stack developer and product engineer in ${city0.trim()}, India`;
+  let desc = `${who}${top3.length ? `, building ${list(top3)}` : ''}. Projects, experience and contact.`;
+  if (desc.length > 160) desc = `${who}. Projects, experience and contact.`;
   const projects = content.projects || [], exp = content.experience || [], tools = (content.tools || []).map(t => t.name);
   const side = content.sideProjects || [], services = content.services || [];
   const sameAs = [links.github, links.linkedin, links.leetcode, links.codolio].filter(Boolean);
   const [city, country] = (p.location || 'Jaipur, India').split(',').map(s => s.trim());
   const school = (p.education || '').split('·').map(s => s.trim());
   const jobs = exp.filter(e => /intern|engineer|developer/i.test(e.title));
+  const current = jobs.find(e => /now|present/i.test(e.when || ''));
+  // "ThinkYantra Solution Pvt. Ltd., Jaipur. Built ..." -> org "ThinkYantra Solution Pvt. Ltd.", rest "Built ..."
+  const curText = String(current?.text || '');
+  const currentOrg = current ? curText.split(/,\s/)[0].trim() : '';
+  const currentRest = curText.slice(currentOrg.length).replace(/^,[^.]*\.\s*/, '').trim();
+  const fn = p.firstName || name;
 
   // ---------- answers to the questions people (and answer engines) actually ask ----------
   const faq = [
     [`Who is ${name}?`, `${lead}${p.education ? ` Education: ${p.education}.` : ''}`],
+    current && [`What is ${fn} doing right now?`, `${fn} is a ${current.title} at ${currentOrg} (${current.when}). ${currentRest}`.trim()],
+    school[1] && [`Where does ${fn} study?`, `${fn} is doing a ${school[0]} at ${school[1]}${school[2] ? ` (${school[2]})` : ''}.`],
     [`What projects has ${p.firstName || name} built?`, projects.map(x => `${x.name}: ${x.summary}`).join(' ')],
     [`What technologies does ${p.firstName || name} work with?`, `${list(tools)}.`],
     jobs.length && [`Where has ${p.firstName || name} worked?`, jobs.map(e => `${e.title} (${e.when}): ${e.text}`).join(' ')],
@@ -41,9 +54,13 @@ export function buildSeo(content = {}, siteUrl = '') {
       url: base, image: base ? base + 'og.png' : '', sameAs,
       address: { '@type': 'PostalAddress', addressLocality: city, addressCountry: country || 'India' },
       alumniOf: school[1] ? { '@type': 'CollegeOrUniversity', name: school[1] } : undefined,
+      worksFor: currentOrg ? { '@type': 'Organization', name: currentOrg } : undefined,
+      hasOccupation: { '@type': 'Occupation', name: role, occupationLocation: { '@type': 'City', name: city } },
+      alternateName: [p.firstName, links.github && links.github.replace(/\/$/, '').split('/').pop()].filter(Boolean),
+      mainEntityOfPage: base ? { '@id': base + '#page' } : undefined,
       knowsAbout: tools, knowsLanguage: ['English', 'Hindi'] }),
     clean({ '@type': 'WebSite', '@id': (base || '') + '#website', url: base, name: `${name} portfolio`, description: desc, inLanguage: 'en', author: { '@id': personId } }),
-    clean({ '@type': 'ProfilePage', '@id': (base || '') + '#page', url: base, name: title, description: desc, mainEntity: { '@id': personId }, dateModified: new Date().toISOString().slice(0, 10) }),
+    clean({ '@type': 'ProfilePage', '@id': (base || '') + '#page', url: base, name: title, description: desc, mainEntity: { '@id': personId }, about: { '@id': personId }, inLanguage: 'en', dateModified: new Date().toISOString().slice(0, 10) }),
     { '@type': 'ItemList', name: `Projects by ${name}`, itemListElement: projects.map((x, i) => ({ '@type': 'ListItem', position: i + 1,
       item: clean({ '@type': 'SoftwareApplication', name: x.name, description: x.summary, applicationCategory: x.kicker, operatingSystem: x.platform,
         url: x.live || x.repo, codeRepository: x.repo, dateCreated: x.year, keywords: (x.stack || x.chips || []).join(', '), author: { '@id': personId } }) })) },
@@ -56,8 +73,11 @@ export function buildSeo(content = {}, siteUrl = '') {
     `<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />`,
     `<meta name="author" content="${esc(name)}" />`,
     `<meta name="theme-color" content="#0b0806" />`,
-    `<link rel="icon" href="data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="#1a0f0a"/><text x="32" y="45" font-family="Arial,sans-serif" font-size="38" font-weight="700" text-anchor="middle" fill="#ffa582">K</text></svg>`)}" />`,
+    `<link rel="icon" type="image/svg+xml" href="favicon.svg" />`,
+    `<link rel="alternate icon" href="data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="#1a0f0a"/><text x="32" y="45" font-family="Arial,sans-serif" font-size="38" font-weight="700" text-anchor="middle" fill="#ffa582">K</text></svg>`)}" />`,
     base && `<link rel="canonical" href="${esc(base)}" />`,
+    `<meta name="keywords" content="${esc([name, 'full-stack developer', 'product engineer', `${city} developer`, 'portfolio', ...projects.map(x => x.name), ...tools.slice(0, 8)].join(', '))}" />`,
+    `<meta name="format-detection" content="telephone=no" />`,
     `<link rel="alternate" type="text/plain" href="llms.txt" title="LLM-readable summary" />`,
     `<meta property="og:type" content="profile" />`,
     `<meta property="og:site_name" content="${esc(name)}" />`,
@@ -131,7 +151,8 @@ ${p.email ? `- Email: ${p.email}\n` : ''}${sameAs.map(u => `- ${u}`).join('\n')}
 `;
 
   // one group for everyone, so the /admin and /api rules apply to the named AI crawlers too
-  const bots = ['*', 'Googlebot', 'Bingbot', 'GPTBot', 'OAI-SearchBot', 'ChatGPT-User', 'ClaudeBot', 'Claude-SearchBot', 'PerplexityBot', 'Google-Extended', 'Applebot-Extended'];
+  const bots = ['*', 'Googlebot', 'Bingbot', 'Applebot', 'DuckDuckBot', 'GPTBot', 'OAI-SearchBot', 'ChatGPT-User', 'ClaudeBot', 'Claude-SearchBot', 'Claude-User',
+    'PerplexityBot', 'Perplexity-User', 'Google-Extended', 'Applebot-Extended', 'DuckAssistBot', 'Meta-ExternalAgent', 'MistralAI-User'];
   const robots = [
     '# Search engines and AI assistants are welcome to read this portfolio.',
     ...bots.map(b => `User-agent: ${b}`),
@@ -143,6 +164,7 @@ ${p.email ? `- Email: ${p.email}\n` : ''}${sameAs.map(u => `- ${u}`).join('\n')}
   const sitemap = base ? `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>${esc(base)}</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>${esc(base)}Kshitij_Mathur_Resume.pdf</loc><lastmod>${today}</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>${esc(base)}llms.txt</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url>
 </urlset>
 ` : '';
